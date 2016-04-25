@@ -14,6 +14,21 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
         TampilTable();
     }
     
+   /* public ResultSet GenerateID()throws SQLException{
+        try{
+            Statement stmt=k.getKoneksi().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("insert into detail('content','username') values(" +
+            "'"+media.getPath()+"'"+"'" +account.getUsername()+"')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs=stmt.getGeneratedKeys();
+            
+            rs.next();
+            String se
+            idNota.setText();
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, "Not Found! \n" + se.getMessage());
+        }
+    } */
+    
     public void TampilMenu(){
         try{
             Statement stmt=k.getKoneksi().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -29,6 +44,7 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
     }
     
     public void TampilTable(){
+        Cart.addColumn("Kode Menu");
         Cart.addColumn("Nama Menu");
         Cart.addColumn("Jumlah");
         Cart.addColumn("Harga");
@@ -53,6 +69,7 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         HapusMenu = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        idNota = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,34 +141,38 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Detail Pesanan");
 
+        idNota.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(HapusMenu)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(Nomor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(13, 13, 13)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(PilihMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(idNota, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(HapusMenu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Nomor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Harga, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PilihMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -170,7 +191,9 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(PilihMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idNota))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -208,14 +231,29 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
     }//GEN-LAST:event_NomorStateChanged
 
     private void PilihMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PilihMenuActionPerformed
-        Cart.addRow(new Object[]{
-            MenuList.getSelectedValue(),
-            Nomor.getValue(),
-            Harga.getText()
-        });
-        TabelBelanja.setModel(Cart);
-        Long total=Long.parseLong(Harga.getText())+Long.parseLong(jTextField1.getText());
-        jTextField1.setText(String.valueOf(total));
+        try{
+            Statement stmt=k.getKoneksi().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet rs=stmt.executeQuery("select kode_menu from menu where nama_menu like '%"+MenuList.getSelectedValue()+"%'");
+            
+            while(rs.next()){
+                Object[] ob=new Object[1];
+                ob[0]=rs.getString("kode_menu");
+                String Kode;
+                
+                Cart.addRow(new Object[]{
+                    Kode=String.valueOf(ob[0]),
+                    MenuList.getSelectedValue(),
+                    Nomor.getValue(),
+                    Harga.getText()
+                });
+                TabelBelanja.setModel(Cart);
+                Long total=Long.parseLong(Harga.getText())+Long.parseLong(jTextField1.getText());
+                jTextField1.setText(String.valueOf(total));
+            }
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, se.getMessage());
+        }
+        
     }//GEN-LAST:event_PilihMenuActionPerformed
 
     private void HapusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HapusMenuActionPerformed
@@ -278,6 +316,7 @@ public class PilihMenuNDetailPesanan extends javax.swing.JFrame {
     private javax.swing.JSpinner Nomor;
     private javax.swing.JButton PilihMenu;
     private javax.swing.JTable TabelBelanja;
+    private javax.swing.JLabel idNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
